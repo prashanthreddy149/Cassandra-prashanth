@@ -1,7 +1,0 @@
-{
-    "/d3api/getDropDownList":{
-        "target": "http://dashboard.engrid.in",
-        "secure":false,
-        "changeorigin":true
-    }
-}
