@@ -4,16 +4,25 @@ import { Lists } from '../Lists';
 // import { RestService } from '../rest.service';
 import { EventserviceService } from '../eventservice.service';
 import { FormGroup, FormControl, FormBuilder} from '@angular/forms';
+
 import {
   ChartComponent,
-  ApexAxisChartSeries,
-  ApexChart,
-  ApexXAxis,
-  ApexTitleSubtitle,
+  // ApexAxisChartSeries,
+  // ApexChart,
+  // ApexXAxis,
+   ApexTitleSubtitle,
+  // ApexNonAxisChartSeries,
+  // ApexDataLabels,
+  // ApexResponsive,
   ApexNonAxisChartSeries,
-  ApexDataLabels
+  ApexResponsive,
+  ApexChart,
+  ApexFill,
+  ApexDataLabels,
+  ApexLegend
 } from "ng-apexcharts";
 import { data } from 'jquery';
+
 @Component({
   selector: 'app-eventdashboard',
   templateUrl: './eventdashboard.component.html',
@@ -21,21 +30,26 @@ import { data } from 'jquery';
 })
 export class EventdashboardComponent implements OnInit {
   detaildata!: FormGroup; 
+  
 constructor( private  eventserviceService:  EventserviceService,private fb : FormBuilder){}
-lists:Lists[]=[];
+table:Lists[]=[];
+
 chartSeries:ApexNonAxisChartSeries=[];
 chartDetails:ApexChart={
   type:'pie',
   toolbar:{
     show:true
   }
+  
 };
+
 chartTitle:ApexTitleSubtitle = {
-  text: 'Leading Events',
-  align: 'center'
+  // text: 'Leading Events',
+  align: 'center',
+  
 };
 chartDataLabels:ApexDataLabels = {
-  enabled:true
+  enabled:false
 };
 chartLabels:any;
 eventTypeCount:any;
@@ -76,7 +90,7 @@ ngOnInit():void
     this.eventserviceService.getAllList()
     .subscribe(
       data=>{
-        this.lists = data.list;
+        this.table = data.list;
         // console.log("data.list",data.list);
         this.eventTypeCount = data.eventTypeCount;
         this.chartSeries = Object.values(data.pieListData);
@@ -104,18 +118,83 @@ ngOnInit():void
 
 // }
 onClickSubmit(data):void {
-  alert("Entered Device id : " + data.device);
-  this.eventserviceService.getUsersMultipleParams(data.device,data.event,data.state)
-  // this.eventserviceService.getSelectedDataReport(selectedDeviceName,selectedEventName,selectedStateName)
-  .subscribe(
-        data=>{    
-          this.lists = data.device;
-          this.eventTypeCount = data.eventTypeCount;
-          this.chartSeries = Object.values(data.pieListData);
-          this.chartLabels = Object.keys(data.pieListData);
-        }
-      );
+  // alert("Entered Device id : " + data.device);
+ 
+
+ 
+
+      if (data.device == "" && data.event != "" && data.state != "")
+      {
+        // alert("device is null");
+        this.eventserviceService.getUserWithoutDevice(data.event,data.state)
+        .subscribe(
+          data=>{    
+            // this.lists = data.device;
+            this.table = data.list;
+            this.eventTypeCount = data.eventTypeCount;
+            this.chartSeries = Object.values(data.pieListData);
+            this.chartLabels = Object.keys(data.pieListData);
+          }
+        );
+      };
+      if (data.event == "" && data.state != "" && data.device != "")
+      {
+        // alert("event is null");
+        this.eventserviceService.getUserWithoutEvent(data.device,data.state)
+        .subscribe(
+          data=>{    
+            // this.lists = data.device;
+            this.table = data.list;
+            this.eventTypeCount = data.eventTypeCount;
+            this.chartSeries = Object.values(data.pieListData);
+            this.chartLabels = Object.keys(data.pieListData);
+          }
+        );
+      };
+      if (data.state == ""&& data.event != "" && data.device != "")
+      {
+        // alert("state is null");
+        this.eventserviceService.getUserWithoutState(data.device,data.event)
+        .subscribe(
+          data=>{    
+            this.table = data.list;
+            // this.lists = data.device;
+            this.eventTypeCount = data.eventTypeCount;
+            this.chartSeries = Object.values(data.pieListData);
+            this.chartLabels = Object.keys(data.pieListData);
+          }
+        );
+      };
+      if (data.state == "" && data.event == "")
+      {
+        // alert("event & state is null");
+        this.eventserviceService.getUserWithoutStateAndEvent(data.device)
+        .subscribe(
+          data=>{    
+            this.table = data.list;
+            // this.lists = data.device;
+            this.eventTypeCount = data.eventTypeCount;
+            this.chartSeries = Object.values(data.pieListData);
+            this.chartLabels = Object.keys(data.pieListData);
+          }
+        );
+      };
+      if (data.device != "" && data.event != "" && data.state != ""){
+        // alert("all are available");
+        this.eventserviceService.getUsersMultipleParams(data.device,data.event,data.state)
+        // this.eventserviceService.getSelectedDataReport(selectedDeviceName,selectedEventName,selectedStateName)
+        .subscribe(
+              data=>{   
+                this.table = data.list; 
+                // this.lists = data.device;
+                this.eventTypeCount = data.eventTypeCount;
+                this.chartSeries = Object.values(data.pieListData);
+                this.chartLabels = Object.keys(data.pieListData);
+              }
+            );
+      }
 }
+
 }
 
 

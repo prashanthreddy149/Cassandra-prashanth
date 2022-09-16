@@ -49,5 +49,40 @@ public getUsersMultipleParams(device,event,state): Observable<any> {
   let queryParams = new HttpParams({ fromObject: parameters }); 
   return this.httpclient.get<any>(url,{params:queryParams});
 }
- 
+public getUserWithoutDevice(event,state): Observable<any> {
+  const url = 'http://dashboard.engrid.in/d3api/getDropDown';
+  let parameters = {"event":event,"state":state};
+  let queryParams = new HttpParams({ fromObject: parameters }); 
+  return this.httpclient.get<any>(url,{params:queryParams});
+}
+public getUserWithoutEvent(device,state): Observable<any> {
+  const url = 'http://dashboard.engrid.in/d3api/getDropDown';
+  let parameters = {"device":device,"state":state};
+  let queryParams = new HttpParams({ fromObject: parameters }); 
+  return this.httpclient.get<any>(url,{params:queryParams});
+}
+public getUserWithoutState(device,event): Observable<any> {
+  const url = 'http://dashboard.engrid.in/d3api/getDropDown';
+  let parameters = {"device":device,"event":event};
+  let queryParams = new HttpParams({ fromObject: parameters }); 
+  return this.httpclient.get<any>(url,{params:queryParams});
+}
+public getUserWithoutEventAndDevice(state): Observable<any> {
+  const url = 'http://dashboard.engrid.in/d3api/getDropDown';
+  let parameters = {"state":state};
+  let queryParams = new HttpParams({ fromObject: parameters }); 
+  return this.httpclient.get<any>(url,{params:queryParams});
+}
+public getUserWithoutStateAndDevice(event): Observable<any> {
+  const url = 'http://dashboard.engrid.in/d3api/getDropDown';
+  let parameters = {"event":event};
+  let queryParams = new HttpParams({ fromObject: parameters }); 
+  return this.httpclient.get<any>(url,{params:queryParams});
+}
+public getUserWithoutStateAndEvent(device): Observable<any> {
+  const url = 'http://dashboard.engrid.in/d3api/getDropDown';
+  let parameters = {"device":device};
+  let queryParams = new HttpParams({ fromObject: parameters }); 
+  return this.httpclient.get<any>(url,{params:queryParams});
+}
 }

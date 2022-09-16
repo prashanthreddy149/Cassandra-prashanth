@@ -22,6 +22,7 @@
                 <label for="inputDevice">Select Device</label>
                 <div class="select2-purple">
                 <select formControlName="device"  id="inputDevice" class="form-control">
+                <option value="">All Devices</option>  
                 <option *ngFor="let device of deviceList" [value]="device">{{ device }}</option>
               
                 </select>
@@ -30,12 +31,14 @@
             <div class="form-group" data-select2-id="58">
                 <label for="inputEvent">Select Event Type</label>
                 <select class="form-control" formControlName="event" id="inputEvent">
+                <option value="">All Events</option>    
                 <option *ngFor="let event of eventList" [value]="event">{{ event }}</option>
                 </select>
                 </div>
                 <div class="form-group" data-select2-id="59">
                     <label for="inputState">Select Event State</label>
                     <select class="form-control" formControlName="state" id="inputState">
+                    <option value="">All State</option> 
                     <option *ngFor="let state of stateList" [value]="state">{{ state }}</option>
                     </select>
                     </div>
@@ -97,7 +100,8 @@
 </div>
 
 <div class="card card-dtabular">
-    <div class="card-header">
+    
+    <div class="card-header card-info">
         <h3 class="card-title">Event Details</h3>
         <div class="card-tools">
         <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -114,22 +118,22 @@
         <div class="row"><div class="col-sm-12 col-md-6">
      
     </div>
-    <div class="col-sm-12 col-md-6">
+    <!-- <div class="col-sm-12 col-md-6">
         <div id="example1_filter" class="dataTables_filter">
             <label>Search:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="example2"></label>
         </div>
-    </div>
+    </div> -->
 </div>
 <div class="row">
     <div class="col-sm-12">
-        <table id="example2" class="table table-bordered table-hover">
+        <table id="example2" class="table table-bordered table-striped dataTable dtr-inline table-responsive">
         
     <thead>
     <tr>
         <th *ngFor="let col of column" class="sorting sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">{{ col }}</th></tr>
     </thead>
     <tbody>  
-    <tr *ngFor="let list of lists" >
+    <tr *ngFor="let list of table" >
         <td *ngFor="let col of index">
             {{ list[col] }}
         </td>
@@ -137,9 +141,21 @@
     </table>
 </div>
 </div>
-<div class="row">
+<!-- <div class="row">
     <div class="col-sm-12 col-md-5">
-        <div class="dataTables_info" id="example1_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div></div><div class="col-sm-12 col-md-7"><div class="dataTables_paginate paging_simple_numbers" id="example1_paginate"><ul class="pagination"><li class="paginate_button page-item previous disabled" id="example1_previous"><a href="#" aria-controls="example1" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li><li class="paginate_button page-item active"><a href="#" aria-controls="example1" data-dt-idx="1" tabindex="0" class="page-link">1</a></li><li class="paginate_button page-item "><a href="#" aria-controls="example1" data-dt-idx="2" tabindex="0" class="page-link">2</a></li><li class="paginate_button page-item "><a href="#" aria-controls="example1" data-dt-idx="3" tabindex="0" class="page-link">3</a></li><li class="paginate_button page-item "><a href="#" aria-controls="example1" data-dt-idx="4" tabindex="0" class="page-link">4</a></li><li class="paginate_button page-item "><a href="#" aria-controls="example1" data-dt-idx="5" tabindex="0" class="page-link">5</a></li><li class="paginate_button page-item "><a href="#" aria-controls="example1" data-dt-idx="6" tabindex="0" class="page-link">6</a></li><li class="paginate_button page-item next" id="example1_next"><a href="#" aria-controls="example1" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li></ul></div></div></div></div>
+        </div><div class="col-sm-12 col-md-7">
+            <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
+                <ul class="pagination">
+                    <li class="paginate_button page-item previous disabled" id="example1_previous"><a href="#" aria-controls="example1" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li>
+                    <li class="paginate_button page-item active"><a href="#" aria-controls="example1" data-dt-idx="1" tabindex="0" class="page-link">1</a></li>
+                    <li class="paginate_button page-item "><a href="#" aria-controls="example1" data-dt-idx="2" tabindex="0" class="page-link">2</a></li><li class="paginate_button page-item "><a href="#" aria-controls="example1" data-dt-idx="3" tabindex="0" class="page-link">3</a></li>
+                    <li class="paginate_button page-item "><a href="#" aria-controls="example1" data-dt-idx="4" tabindex="0" class="page-link">4</a></li><li class="paginate_button page-item "><a href="#" aria-controls="example1" data-dt-idx="5" tabindex="0" class="page-link">5</a></li>
+                    <li class="paginate_button page-item "><a href="#" aria-controls="example1" data-dt-idx="6" tabindex="0" class="page-link">6</a></li><li class="paginate_button page-item next" id="example1_next"><a href="#" aria-controls="example1" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li>
+                </ul>
+            </div>
+        </div>
+    </div> -->
+</div>
     </div>
     
     </div>
