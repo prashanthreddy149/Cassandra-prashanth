@@ -15,6 +15,7 @@ import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DataTablesModule } from 'angular-datatables';
 import { NgApexchartsModule } from 'ng-apexcharts';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 const appRoutes: Routes = [
   {
@@ -38,6 +39,7 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
+    NgxPaginationModule,
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,

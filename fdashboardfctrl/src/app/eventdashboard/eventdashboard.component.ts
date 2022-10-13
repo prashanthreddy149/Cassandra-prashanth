@@ -31,8 +31,22 @@ import { data } from 'jquery';
 export class EventdashboardComponent implements OnInit {
   detaildata!: FormGroup; 
   
+  page:number = 1;
+  count:number=0;
+  tableSize:number = 5;
+  tableSizes: any = [5,10,15,20,25,30,35,40,45,50];
 constructor( private  eventserviceService:  EventserviceService,private fb : FormBuilder){}
 table:Lists[]=[];
+
+
+onTableDataChange(event:any)
+{
+this.page=event;
+this.getAllList();
+}
+  getAllList() {
+    throw new Error('Method not implemented.');
+  }
 
 chartSeries:ApexNonAxisChartSeries=[];
 chartDetails:ApexChart={

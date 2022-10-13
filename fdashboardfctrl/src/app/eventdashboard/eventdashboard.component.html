@@ -133,7 +133,10 @@
         <th *ngFor="let col of column" class="sorting sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">{{ col }}</th></tr>
     </thead>
     <tbody>  
-    <tr *ngFor="let list of table" >
+    <tr *ngFor="let list of table | paginate: {
+        itemsPerPage: tableSize,
+        currentPage: page,
+        totalItems: count}; let i=index" >
         <td *ngFor="let col of index">
             {{ list[col] }}
         </td>
@@ -141,20 +144,25 @@
     </table>
 </div>
 </div>
-<!-- <div class="row">
+<div class="row">
     <div class="col-sm-12 col-md-5">
         </div><div class="col-sm-12 col-md-7">
             <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
-                <ul class="pagination">
+                <!-- <ul class="pagination">
                     <li class="paginate_button page-item previous disabled" id="example1_previous"><a href="#" aria-controls="example1" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li>
                     <li class="paginate_button page-item active"><a href="#" aria-controls="example1" data-dt-idx="1" tabindex="0" class="page-link">1</a></li>
                     <li class="paginate_button page-item "><a href="#" aria-controls="example1" data-dt-idx="2" tabindex="0" class="page-link">2</a></li><li class="paginate_button page-item "><a href="#" aria-controls="example1" data-dt-idx="3" tabindex="0" class="page-link">3</a></li>
                     <li class="paginate_button page-item "><a href="#" aria-controls="example1" data-dt-idx="4" tabindex="0" class="page-link">4</a></li><li class="paginate_button page-item "><a href="#" aria-controls="example1" data-dt-idx="5" tabindex="0" class="page-link">5</a></li>
                     <li class="paginate_button page-item "><a href="#" aria-controls="example1" data-dt-idx="6" tabindex="0" class="page-link">6</a></li><li class="paginate_button page-item next" id="example1_next"><a href="#" aria-controls="example1" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li>
-                </ul>
-            </div>
+                </ul> -->
+                <pagination-controls
+                previousLabel="Prev"
+                nextLabel="Next"
+                (pageChange)="onTableDataChange($event)">
+            </pagination-controls>
+            </div> 
         </div>
-    </div> -->
+    </div>
 </div>
     </div>
     

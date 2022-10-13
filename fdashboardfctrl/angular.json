@@ -39,7 +39,6 @@
               "node_modules/admin-lte/plugins/icheck-bootstrap/icheck-bootstrap.min.css",
               "node_modules/admin-lte/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css",
               "node_modules/admin-lte/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/select2/dist/css/select2.min.css",
               "node_modules/admin-lte/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css",
               "node_modules/admin-lte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css",
